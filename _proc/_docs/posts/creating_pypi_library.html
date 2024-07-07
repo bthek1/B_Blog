@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Benedict Thekkel">
+<meta name="dcterms.date" content="2024-04-22">
+<meta name="description" content="I’ve been utilizing nbdev to generate webpages from GitHub repositories. However, nbdev’s main function is to produce Python libraries for distribution via conda and pip. I’ve developed a Python library named NbdevAuto for this purpose.">
 
-<title>benedicts_blog - Benedicts Blog</title>
+<title>benedicts_blog - Creating Pypi Library</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,31 +23,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./posts/01_Exploring_Deeplearning.html" rel="next">
-<link href="./favi.svg" rel="icon" type="image/svg+xml">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../posts/future_plan.html" rel="next">
+<link href="../posts/web_development.html" rel="prev">
+<link href="../favi.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,72 +107,20 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-sample-listings .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
 
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-sample-listings'] = new List('listing-sample-listings', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="benedicts_blog - Benedicts Blog">
-<meta property="og:image" content="https://bthek1.github.io/benedicts_blog/Logo.svg">
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="benedicts_blog - Creating Pypi Library">
+<meta property="og:description" content="I’ve been utilizing nbdev to generate webpages from GitHub repositories. However, nbdev’s main function is to produce Python libraries for distribution via conda and pip. I’ve developed a Python library named NbdevAuto for this purpose.">
+<meta property="og:image" content="https://bthek1.github.io/benedicts_blog/posts/Logo.svg">
 <meta property="og:site_name" content="benedicts_blog">
-<meta name="twitter:title" content="benedicts_blog - Benedicts Blog">
-<meta name="twitter:image" content="https://bthek1.github.io/benedicts_blog/Logo.svg">
+<meta name="twitter:title" content="benedicts_blog - Creating Pypi Library">
+<meta name="twitter:description" content="I’ve been utilizing nbdev to generate webpages from GitHub repositories. However, nbdev’s main function is to produce Python libraries for distribution via conda and pip. I’ve developed a Python library named NbdevAuto for this purpose.">
+<meta name="twitter:image" content="https://bthek1.github.io/benedicts_blog/posts/Logo.svg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -147,8 +131,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./Logo.svg" alt="Quarto logo." class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../Logo.svg" alt="Quarto logo." class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -252,7 +236,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Benedicts Blog</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../posts/01_Exploring_Deeplearning.html">posts</a></li><li class="breadcrumb-item"><a href="../posts/creating_pypi_library.html">Creating Pypi Library</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -266,7 +250,7 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Benedicts Blog</span></a>
   </div>
 </li>
@@ -281,43 +265,43 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/01_Exploring_Deeplearning.html" class="sidebar-item-text sidebar-link">
+  <a href="../posts/01_Exploring_Deeplearning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring Deeplearning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/02_Exploring_Machine_Learning.html" class="sidebar-item-text sidebar-link">
+  <a href="../posts/02_Exploring_Machine_Learning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring Machine Learning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/03_Time_Series_Analysis.html" class="sidebar-item-text sidebar-link">
+  <a href="../posts/03_Time_Series_Analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Building, testing and Deploying Time-Series ML models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/web_development.html" class="sidebar-item-text sidebar-link">
+  <a href="../posts/web_development.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Adventure into Web and App development</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/creating_pypi_library.html" class="sidebar-item-text sidebar-link">
+  <a href="../posts/creating_pypi_library.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Creating Pypi Library</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/future_plan.html" class="sidebar-item-text sidebar-link">
+  <a href="../posts/future_plan.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Future Plan</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/future_map.html" class="sidebar-item-text sidebar-link">
+  <a href="../posts/future_map.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Future Map</span></a>
   </div>
 </li>
@@ -329,21 +313,48 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#nbdevauto" id="toc-nbdevauto" class="nav-link active" data-scroll-target="#nbdevauto">NbdevAuto</a>
+  <ul class="collapse">
+  <li><a href="#cli-commands-created" id="toc-cli-commands-created" class="nav-link" data-scroll-target="#cli-commands-created">cli commands created</a></li>
+  </ul></li>
+  <li><a href="#for-downloading-kaggle-files" id="toc-for-downloading-kaggle-files" class="nav-link" data-scroll-target="#for-downloading-kaggle-files">For downloading kaggle files</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.dev/bthek1/benedicts_blog/blob/main/posts/05_Creating_pypi_library.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/bthek1/benedicts_blog/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../posts/01_Exploring_Deeplearning.html">posts</a></li><li class="breadcrumb-item"><a href="../posts/creating_pypi_library.html">Creating Pypi Library</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Benedicts Blog</h1>
+<h1 class="title">Creating Pypi Library</h1>
 </div>
 
+<div>
+  <div class="description">
+    I’ve been utilizing nbdev to generate webpages from GitHub repositories. However, nbdev’s main function is to produce Python libraries for distribution via conda and pip. I’ve developed a Python library named NbdevAuto for this purpose.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Benedict Thekkel </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 22, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -354,236 +365,143 @@ window.Quarto = {
 
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<div id="listing-sample-listings" class="quarto-listing quarto-listing-container-default">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-sample-listings-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-sample-listings'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-author" data-direction="asc">
-          Author
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1714053600000" data-listing-file-modified-sort="1720355574437" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="140">
-<div class="thumbnail">
-<p><a href="./posts/01_Exploring_Deeplearning.html" class="no-external"></a></p><a href="./posts/01_Exploring_Deeplearning.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/01_Exploring_Deeplearning.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/01_Exploring_Deeplearning.html" class="no-external">Exploring Deeplearning</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/01_Exploring_Deeplearning.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/01_Exploring_Deeplearning.html" class="no-external">I’ve been immersing myself in PyTorch and fastAI for some time. Everything I’ve absorbed can be categorized into three main areas: FastAI setup, the FastAI course, and deep learning.</a>
+<section id="nbdevauto" class="level2">
+<h2 class="anchored" data-anchor-id="nbdevauto">NbdevAuto</h2>
+<blockquote class="blockquote">
+<p><a href="https://bthek1.github.io/nbdevAuto/functions.html">https://bthek1.github.io/nbdevAuto/functions.html</a></p>
+</blockquote>
+<p>This automation library was created for the perpose of speed up common daily task.</p>
+<p>Like for example, after <code>pip install nbdevAuto</code>. The cli command <code>upload</code> will automatically:</p>
+<ul>
+<li>nbdev_clean</li>
+<li>nbdev_export</li>
+<li>git add .</li>
+<li>git push.</li>
+</ul>
+<div id="cell-5" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip <span class="bu">list</span> <span class="op">|</span> grep nbdevAuto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>nbdevAuto                           0.0.112     /home/ben/BENEDICT_Only/Benedict_Projects/Benedict_ML/nbdevAuto</code></pre>
 </div>
 </div>
-<div class="metadata">
-<a href="./posts/01_Exploring_Deeplearning.html" class="no-external">
-<div class="listing-date">
-Apr 26, 2024
-</div>
-<div class="listing-author">
-Benedict Thekkel
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1713967200000" data-listing-file-modified-sort="1720355574457" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="118">
-<div class="thumbnail">
-<p><a href="./posts/02_Exploring_Machine_Learning.html" class="no-external"></a></p><a href="./posts/02_Exploring_Machine_Learning.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/02_Exploring_Machine_Learning.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/02_Exploring_Machine_Learning.html" class="no-external">Exploring Machine Learning</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/02_Exploring_Machine_Learning.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/02_Exploring_Machine_Learning.html" class="no-external">I’ve developed two libraries to delve into machine learning techniques. The ML repo delves into various methods, while MLtools provide in-depth exploration of commonly used libraries that assist in ML development, such as matplotlib, numpy, pandas, scipy, and more.</a>
+<section id="cli-commands-created" class="level3">
+<h3 class="anchored" data-anchor-id="cli-commands-created">cli commands created</h3>
+<div id="cell-7" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>create_cfast              create mamba env cfast
+everything                prep, gacp, release, reinstall
+gacp                      git add, commit and push to github
+gitrelease                release to git
+h                         Show help for all console scripts
+piprelease                release to pypi
+prep                      Export, test, and clean notebooks, and render README if needed
+reinstall                 runs pip install -e .
+release                   release to github and pip
+update                    prep, then reinstall
+upload                    prep, then gacp</code></pre>
 </div>
 </div>
-<div class="metadata">
-<a href="./posts/02_Exploring_Machine_Learning.html" class="no-external">
-<div class="listing-date">
-Apr 25, 2024
+<p>Also, the library contains function to simplify download images for the internet for image classification deep learning like:</p>
+<div id="cell-9" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nbdevAuto.functions <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1713880800000" data-listing-file-modified-sort="1720355574477" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="171">
-<div class="thumbnail">
-<p><a href="./posts/03_Time_Series_Analysis.html" class="no-external"></a></p><a href="./posts/03_Time_Series_Analysis.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/03_Time_Series_Analysis.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/03_Time_Series_Analysis.html" class="no-external">Building, testing and Deploying Time-Series ML models</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/03_Time_Series_Analysis.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/03_Time_Series_Analysis.html" class="no-external">During my internship, I was tasked with developing models to forecast electricity usage for an electricity monitoring company.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/03_Time_Series_Analysis.html" class="no-external">
-<div class="listing-date">
-Apr 24, 2024
-</div>
-<div class="listing-author">
-Benedict Thekkel
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1713794400000" data-listing-file-modified-sort="1720355574467" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="43">
-<div class="thumbnail">
-<p><a href="./posts/web_development.html" class="no-external"></a></p><a href="./posts/web_development.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/web_development.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/web_development.html" class="no-external">Adventure into Web and App development</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/web_development.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/web_development.html" class="no-external">I came to the realization that knowledge of AI along isn’t that useful unless you can deploy it the public. Hence my interest into web development.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/web_development.html" class="no-external">
-<div class="listing-date">
-Apr 23, 2024
-</div>
-<div class="listing-author">
-Benedict Thekkel
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1713708000000" data-listing-file-modified-sort="1720355574447" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="69">
-<div class="thumbnail">
-<p><a href="./posts/creating_pypi_library.html" class="no-external"></a></p><a href="./posts/creating_pypi_library.html" class="no-external">
-<p class="card-img-top"><img src="posts/05_Creating_pypi_library_files/figure-html/cell-6-output-2.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/creating_pypi_library.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/creating_pypi_library.html" class="no-external">Creating Pypi Library</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/creating_pypi_library.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/creating_pypi_library.html" class="no-external">I’ve been utilizing nbdev to generate webpages from GitHub repositories. However, nbdev’s main function is to produce Python libraries for distribution via conda and pip. I’ve developed a Python library named NbdevAuto for this purpose.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/creating_pypi_library.html" class="no-external">
-<div class="listing-date">
-Apr 22, 2024
-</div>
-<div class="listing-author">
-Benedict Thekkel
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-listing-date-sort="1713621600000" data-listing-file-modified-sort="1720355794937" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="47">
-<div class="thumbnail">
-<p><a href="./posts/future_plan.html" class="no-external"></a></p><a href="./posts/future_plan.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/future_plan.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/future_plan.html" class="no-external">Future Plan</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/future_plan.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/future_plan.html" class="no-external">Breakdown of future learning goals</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/future_plan.html" class="no-external">
-<div class="listing-date">
-Apr 21, 2024
-</div>
-<div class="listing-author">
-Benedict Thekkel
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-listing-date-sort="1713535200000" data-listing-file-modified-sort="1720355663187" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
-<div class="thumbnail">
-<p><a href="./posts/future_map.html" class="no-external"></a></p><a href="./posts/future_map.html" class="no-external">
-<p class="card-img-top"><img src="posts/91_Future_Map_files/figure-html/cell-2-output-1.svg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/future_map.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/future_map.html" class="no-external">Future Map</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/future_map.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/future_map.html" class="no-external">Future Map</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/future_map.html" class="no-external">
-<div class="listing-date">
-Apr 20, 2024
-</div>
-<div class="listing-author">
-Benedict Thekkel
-</div>
-</a>
+<div id="cell-10" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>download_pic?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">Signature:</span>
+download_pic<span class="ansi-blue-fg">(</span>
+    image<span class="ansi-blue-fg">:</span> str<span class="ansi-blue-fg">,</span>
+    n_images<span class="ansi-blue-fg">:</span> int <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span>
+    name<span class="ansi-blue-fg">:</span> str <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">''</span><span class="ansi-blue-fg">,</span>
+    folder<span class="ansi-blue-fg">:</span> str <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">''</span><span class="ansi-blue-fg">,</span>
+    show_progress<span class="ansi-blue-fg">:</span> bool <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
+    recreate<span class="ansi-blue-fg">:</span> bool <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span> Downloads the image into the folder provided and displays it
+<span class="ansi-red-fg">File:</span>      ~/BENEDICT_Only/Benedict_Projects/Benedict_ML/nbdevAuto/nbdevAuto/functions.py
+<span class="ansi-red-fg">Type:</span>      function</pre>
 </div>
 </div>
 </div>
-<div class="listing-no-matching d-none">
-No matching items
+<div id="cell-11" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>download_pic(<span class="st">'bird'</span>,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>             n_images <span class="op">=</span> <span class="dv">1</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>             folder <span class="op">=</span> <span class="st">'./Data'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>             show_progress<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>             recreate <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"d222889c99574b2692689b34332a506c","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05_Creating_pypi_library_files/figure-html/cell-6-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-12" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>create_data_folder?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">Signature:</span>
+create_data_folder<span class="ansi-blue-fg">(</span>
+    folder_path<span class="ansi-blue-fg">:</span> str<span class="ansi-blue-fg">,</span>
+    searches<span class="ansi-blue-fg">:</span> tuple<span class="ansi-blue-fg">,</span>
+    before<span class="ansi-blue-fg">:</span> str <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">''</span><span class="ansi-blue-fg">,</span>
+    after<span class="ansi-blue-fg">:</span> str <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">''</span><span class="ansi-blue-fg">,</span>
+    amount<span class="ansi-blue-fg">:</span> int <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">200</span><span class="ansi-blue-fg">,</span>
+    recreate<span class="ansi-blue-fg">:</span> bool <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
+    show_progress<span class="ansi-blue-fg">:</span> bool <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span> generate image data
+<span class="ansi-red-fg">File:</span>      ~/BENEDICT_Only/Benedict_Projects/Benedict_ML/nbdevAuto/nbdevAuto/functions.py
+<span class="ansi-red-fg">Type:</span>      function</pre>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="for-downloading-kaggle-files" class="level2">
+<h2 class="anchored" data-anchor-id="for-downloading-kaggle-files">For downloading kaggle files</h2>
+<div id="cell-14" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>kaggle_competition_download??</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">Signature:</span> kaggle_competition_download<span class="ansi-blue-fg">(</span>name<span class="ansi-blue-fg">:</span> str<span class="ansi-blue-fg">,</span> folderpath<span class="ansi-blue-fg">:</span> str <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">'./Data'</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Source:</span>   
+<span class="ansi-green-fg">def</span> kaggle_competition_download<span class="ansi-blue-fg">(</span>name<span class="ansi-blue-fg">:</span>str<span class="ansi-blue-fg">,</span> folderpath<span class="ansi-blue-fg">:</span>str <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">'./Data'</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+    <span class="ansi-blue-fg">'download competition files from kaggle'</span>
+    <span class="ansi-green-fg">import</span> os
+    <span class="ansi-green-fg">import</span> shutil
+    <span class="ansi-green-fg">from</span> pathlib <span class="ansi-green-fg">import</span> Path
+    
+    iskaggle <span class="ansi-blue-fg">=</span> os<span class="ansi-blue-fg">.</span>environ<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">'KAGGLE_KERNEL_RUN_TYPE'</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">''</span><span class="ansi-blue-fg">)</span>
+    <span class="ansi-green-fg">if</span> iskaggle<span class="ansi-blue-fg">:</span> path <span class="ansi-blue-fg">=</span> Path<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">f'../input/{name}'</span><span class="ansi-blue-fg">)</span>
+    <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+        path <span class="ansi-blue-fg">=</span> Path<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">f'{folderpath}/{name}'</span><span class="ansi-blue-fg">)</span>
+        <span class="ansi-green-fg">if</span> path<span class="ansi-blue-fg">.</span>exists<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"file exists"</span><span class="ansi-blue-fg">)</span>
+        <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+            <span class="ansi-green-fg">import</span> zipfile<span class="ansi-blue-fg">,</span>kaggle
+            kaggle<span class="ansi-blue-fg">.</span>api<span class="ansi-blue-fg">.</span>competition_download_cli<span class="ansi-blue-fg">(</span>competition <span class="ansi-blue-fg">=</span> name<span class="ansi-blue-fg">,</span> path <span class="ansi-blue-fg">=</span> path<span class="ansi-blue-fg">)</span>
+            zipfile<span class="ansi-blue-fg">.</span>ZipFile<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">f'{path}/{name}.zip'</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>extractall<span class="ansi-blue-fg">(</span>path<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">File:</span>      ~/BENEDICT_Only/Benedict_Projects/Benedict_ML/nbdevAuto/nbdevAuto/functions.py
+<span class="ansi-red-fg">Type:</span>      function</pre>
+</div>
 </div>
 </div>
 
 
-
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script type="application/vnd.jupyter.widget-state+json">
+{"state":{"1e98ab3212b443989eb9bfb867fdf17d":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{}},"4bf0198fef924845b6d9e7ade2c09ba5":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{}},"843114d693684fe091fb2f5b5ebf850e":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"description_width":"","font_size":null,"text_color":null}},"8cda5845729040ffb69806f2317caff8":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{}},"9a01ce1146ee4a7f982abaf5a8b15397":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"FloatProgressModel","state":{"bar_style":"success","layout":"IPY_MODEL_4bf0198fef924845b6d9e7ade2c09ba5","max":1,"style":"IPY_MODEL_f0cca849bb64438182a6a7f7889a09f3","value":1}},"9acf3b87f5ae4c67b1811dd929a5bff5":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"description_width":"","font_size":null,"text_color":null}},"accc01a205154db59a46f3213f9fc194":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"layout":"IPY_MODEL_f59f1dd110d24898bb82a6bcac0dfea3","style":"IPY_MODEL_9acf3b87f5ae4c67b1811dd929a5bff5","value":" 1/1 [00:00&lt;00:00,  8.26it/s]"}},"d222889c99574b2692689b34332a506c":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HBoxModel","state":{"children":["IPY_MODEL_ffa4a0849a6b4acd85400dd0f70ebbd2","IPY_MODEL_9a01ce1146ee4a7f982abaf5a8b15397","IPY_MODEL_accc01a205154db59a46f3213f9fc194"],"layout":"IPY_MODEL_1e98ab3212b443989eb9bfb867fdf17d"}},"f0cca849bb64438182a6a7f7889a09f3":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"ProgressStyleModel","state":{"description_width":""}},"f59f1dd110d24898bb82a6bcac0dfea3":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{}},"ffa4a0849a6b4acd85400dd0f70ebbd2":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"layout":"IPY_MODEL_8cda5845729040ffb69806f2317caff8","style":"IPY_MODEL_843114d693684fe091fb2f5b5ebf850e","value":"100%"}}},"version_major":2,"version_minor":0}
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1141,10 +1059,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../posts/web_development.html" class="pagination-link" aria-label="Adventure into Web and App development">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Adventure into Web and App development</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./posts/01_Exploring_Deeplearning.html" class="pagination-link" aria-label="Exploring Deeplearning">
-        <span class="nav-page-text">Exploring Deeplearning</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../posts/future_plan.html" class="pagination-link" aria-label="Future Plan">
+        <span class="nav-page-text">Future Plan</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1157,7 +1078,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">
+    <a class="nav-link active" href="../index.html" aria-current="page">
 <p>Trademark</p>
 </a>
   </li>  
@@ -1172,12 +1093,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="./index.html">
+    <a class="nav-link" href="../index.html">
 <p>Trademark</p>
 </a>
   </li>  
 </ul>
-    <div class="toc-actions"><ul><li><a href="https://github.dev/bthek1/benedicts_blog/blob/main/index.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/bthek1/benedicts_blog/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/bthek1/benedicts_blog/blob/main/posts/05_Creating_pypi_library.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/bthek1/benedicts_blog/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
