@@ -1,0 +1,34 @@
+digraph A {
+	graph [compound=true fillcolor="#d62828" fontcolor="#003049" fontname="Helvetica,Arial,sans-serif" penwidth=0 rankdir=LR style="rounded,filled"]
+	node [fillcolor="#fcbf49" fontcolor="#003049" fontname="Helvetica,Arial,sans-serif" penwidth=0 shape=box size="8,5" style="rounded,filled" width=1.5]
+	edge [arrowhead=vee arrowsize=1 color="#003049" fontname="Helvetica,Arial,sans-serif" len=1.00 penwidth=1]
+	Intership [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="10" CELLPADDING="10" STYLE = "rounded">
+          <TR><TD PORT="Intership" BORDER="0" STYLE = "rounded" WIDTH="100" >Intership</TD></TR>
+          <TR><TD PORT="Phisaver" STYLE = "rounded" BGCOLOR="#fcbf49" >Phisaver</TD></TR>
+        </TABLE>> fillcolor="#fdfcdc" penwidth=0]
+	Business [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="10" CELLPADDING="10" STYLE = "rounded">
+          <TR><TD PORT="Business" BORDER="0" STYLE = "rounded" WIDTH="100" >Business</TD></TR>
+          <TR><TD PORT="Drone" STYLE = "rounded" BGCOLOR="#fcbf49" >Drone</TD></TR>
+          <TR><TD PORT="Laser" STYLE = "rounded" BGCOLOR="#fcbf49" >Laser</TD></TR>
+        </TABLE>> fillcolor="#fdfcdc" penwidth=0]
+	Project [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="10" CELLPADDING="10" STYLE = "rounded">
+          <TR><TD PORT="f" BORDER="0" STYLE = "rounded" WIDTH="100" >Project</TD></TR>
+          <TR><TD PORT="InfoAI" STYLE = "rounded" BGCOLOR="#fcbf49" >Information AI</TD></TR>
+          <TR><TD PORT="3D" STYLE = "rounded" BGCOLOR="#fcbf49" >3D vision- modeling AI</TD></TR>
+          <TR><TD PORT="stocks" STYLE = "rounded" BGCOLOR="#fcbf49" >Trading Algo</TD></TR>
+        </TABLE>> fillcolor="#fdfcdc" penwidth=0]
+	FASTAI:e -> Thesis:w
+	Thesis:e -> Project:"3D":w
+	Intership:phisaver:e -> Flutter:w
+	Intership:phisaver:e -> Forecasting:w
+	Intership:phisaver:e -> ML:w
+	Forecasting:e -> Project:stocks:w
+	Flutter:e -> Project:"3D":w
+	Flutter:e -> Thesis:w
+	ML:e -> Project:w
+	Business:Laser:e -> Project:w
+	Business:Laser:e -> Manufacturer:w
+	Business:Drone:e -> Project:w
+	Business:Drone:e -> Business:Drone:w
+	Business:Drone:e -> Manufacturer:w
+}
