@@ -136,3 +136,4 @@ curiosity stream
 - image folding and matrix - 3,4D matrix mulitplication
 - electric circuit to group theory - path of leastresistance
 - light fft, light prism
+- dropshipping digi key
